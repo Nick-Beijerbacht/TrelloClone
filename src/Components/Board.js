@@ -14,7 +14,7 @@ const Board = ({project}) => {
         <div>
             <h1>Test board</h1>
             <input type="text" onChange={e => updateListTitle(e.target.value)}/>
-            <input type="button" onClick={ onClick } value="Create" />
+            <input type="button" onClick={ onClick } value="Create List" />
             <div>{lists.map( e =>
                 <List title={e}/>
             )}
