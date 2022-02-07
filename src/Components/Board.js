@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import './Board.css'
 import List from './List'
 
 const Board = ({project}) => {
@@ -11,13 +12,14 @@ const Board = ({project}) => {
     };
 
     return(
-        <div>
-            <h1>Test board</h1>
+        <div className="board-container">
+            <h1 className="board-projectname">{project}</h1>
             <input type="text" onChange={e => updateListTitle(e.target.value)}/>
             <input type="button" onClick={ onClick } value="Create List" />
-            <div>{lists.map( e =>
-                <List title={e}/>
-            )}
+            <div className="list-container">
+                {
+                    lists.map( e => <List className="list" title={e}/>
+                )}
             </div>
         </div>
     )

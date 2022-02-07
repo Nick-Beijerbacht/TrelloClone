@@ -1,0 +1,23 @@
+.board-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+    background-color: #FED973;
+}
+
+.board-projectname {
+    text-align: center;
+}
+
+.list-container {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+.list {
+    display: inline-block;
+}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import './List.css'
 import Card from './Card'
 
 const List = ({title}) => {
@@ -10,13 +11,15 @@ const List = ({title}) => {
         updateCards( arr => [...arr, `${cardTask}`]);
     };
     return (
-        <div>
+        <div className="list">
             <h3>{title}</h3>
+            <div className="card-container">
             <input type="text" onChange={e => updateCardTask(e.target.value)}/>
             <input type="button" onClick={ onClick } value="Create Card" />
             <div>{cards.map( e =>
                 <Card task={e}/>
             )}
+            </div>
             </div>
         </div>
     )

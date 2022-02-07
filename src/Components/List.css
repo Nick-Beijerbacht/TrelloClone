@@ -1,0 +1,10 @@
+.list {
+    flex: 0 0 auto;
+}
+
+.card-container {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    white-space: nowrap;
+    height: 35em;
+}
