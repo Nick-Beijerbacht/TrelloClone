@@ -1,13 +1,13 @@
-import React, {Component} from 'react';
-import './Card'
+import React from 'react'
+import Card from './Card'
 
-class List extends Component {
-    render(){
-        return(
-            <div>
-                Lijst van kaarten
-                <Card/>
-            </div>
-        )
-    }
+const List = ({title}) => {
+    return (
+        <div>
+            <h3>{title}</h3>
+            <Card task="Test task"/>
+        </div>
+    )
 }
+
+export default List;
