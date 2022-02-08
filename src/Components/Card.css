@@ -1,5 +1,6 @@
 .card {
-    background-color: whitesmoke;
+    background-color: white;
     height: 5em;
     border-radius: 6px;
+    overflow-wrap: break-word; 
 }

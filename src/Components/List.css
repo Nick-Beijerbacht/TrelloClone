@@ -1,7 +1,10 @@
 .list {
     display: inline-block;
+    vertical-align:middle;
+    width: 16.2em;
     margin-left: .5em;
     margin-right: .5em;
+    background-color: rgb(231, 231, 231);
 }
 
 .card-container {
@@ -9,4 +12,13 @@
     overflow-y: auto;
     white-space: nowrap;
     height: 35em;
+}
+
+.list-title {
+    text-align: center;
+}
+
+.card-create {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
 }
