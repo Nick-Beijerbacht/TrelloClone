@@ -2,10 +2,11 @@ import React from 'react';
 import { useDrag } from "react-dnd";
 import './Card.css';
 
-const Card = ({task}) => {
+const Card = ({task, id}) => {
 
     const [{ isDragging }, dragRef] = useDrag(() => ({
         type: "card",
+        item: {id: id},
         collect: (monitor) => ({
           isDragging: monitor.isDragging(),
         }),
@@ -17,6 +18,7 @@ const Card = ({task}) => {
           backgroundColor: isDragging ? "#fbb" : "palegoldenrod",
         }}>
             <p>{task}</p>
+            <p>{id}</p>
         </div>
     )
 }
