@@ -1,24 +1,13 @@
 import React from 'react';
-import { useDrag } from "react-dnd";
 import './Card.css';
 
-const Card = ({task, id}) => {
-
-    const [{ isDragging }, dragRef] = useDrag(() => ({
-        type: "card",
-        item: {id: id},
-        collect: (monitor) => ({
-          isDragging: monitor.isDragging(),
-        }),
-      }));
+const Card = ({task, id, listId}) => {
 
     return(
-        <div className="card" ref={dragRef}
-        style={{
-          backgroundColor: isDragging ? "#fbb" : "palegoldenrod",
-        }}>
+        <div className="card">
             <p>{task}</p>
             <p>{id}</p>
+            <p>{listId}</p>
         </div>
     )
 }

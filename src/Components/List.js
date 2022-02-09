@@ -1,36 +1,30 @@
 import React, { useState } from 'react'
-import { useDrop } from "react-dnd";
+import { Droppable } from 'react-beautiful-dnd'
 import './List.css'
 import Card from './Card'
 
-const List = ({title, id, createCard, moveCard}) => {
+const List = ({title, id, createCard, getCardsForList}) => {
 
-    const [cardTask, updateCardTask] = useState("")
-    const [cardList, updateCards] = useState([])
+    const [count, counter] = useState(0);
+    const [cardTask, updateCardTask] = useState("");
 
     const onClick = () => {
-        updateCards(createCard(cardTask));
+        const card = {"id": count+"l"+id, "task": cardTask, "listId": id}
+        createCard(card);
+        counter(count+1)
     };
-
-    const [{ isOver }, dropRef] = useDrop(() => ({
-        accept: "card",
-        drop: (item) => moveCard(item.id),
-        collect: (monitor) => ({
-          isOver: monitor.isOver(),
-        }),
-    }));
 
     return (
         <div className="list">
             <h3 className='list-title'>{title}</h3>
-            <div className="card-container" ref={dropRef}
-            style={{ backgroundColor: isOver ? "#bbf" : "rgba(0,0,0,.12" }}>
-                    {            
-                        cardList.map((e, key) =>
-                        <Card key={key} task={e.task} id={e.id}/>
+            <h3 className='list-title'>{id}</h3>
+            <div className="card-container">
+                    {          
+                        getCardsForList(id).map((e, key) => e.listId === id ?
+                        <Card key={key} task={e.task} id={e.id} listId={id}/>:""
                     )}
                 <div className='card-create'>
-                    <input type="text" onChange={e => updateCardTask({"id": cardList.lenght, "task": e.target.value, "listId": id})}/>
+                    <input type="text" onChange={e => updateCardTask(e.target.value)}/>
                     <input type="button" onClick={ onClick } value="Create Card" />
                 </div>
             </div>
