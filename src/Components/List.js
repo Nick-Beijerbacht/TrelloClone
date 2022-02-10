@@ -1,31 +1,32 @@
 import React, { useState } from 'react'
 import { Droppable } from 'react-beautiful-dnd'
+import { addCard } from "../Reducer/Board";
 import './List.css'
 import Card from './Card'
 
-const List = ({title, id}) => {
+const List = ({title, listId, store}) => {
 
     const [count, counter] = useState(0);
     const [cardTask, updateCardTask] = useState("");
-    const [cards, updateCards] = useState([])
+
 
     const onClick = () => {
-        const card = {"id": count+id, "task": cardTask, "listId": id}
-        const tempCards = [...cards, card]
-        updateCards(tempCards);
-        counter(count+1)
+        const card = {"id": count+listId, "task": cardTask, "listId": listId}
+        store.dispatch(addCard(card));
+        counter(count+1);
+        console.log(store.getState().cards);
     };
 
     return (
         <div className="list">
             <h3 className='list-title'>{title}</h3>
-            <h3 className='list-title'>{id}</h3>
-            <Droppable droppableId={id}>
+            <h3 className='list-title'>{listId}</h3>
+            <Droppable droppableId={listId}>
             {(provided) => (
-            <div className={"card-container "+ id} {...provided.droppableProps} ref={provided.innerRef}>
+            <div className={"card-container "+ listId} {...provided.droppableProps} ref={provided.innerRef}>
                     {          
-                        cards.map(({id, task}, index) => 
-                        <Card key={id} task={task} id={id} index={index}/>
+                        store.getState().cards.map((e , index) => listId === e.listId ?
+                        <Card key={e.id} task={e.task} id={e.id} index={index}/>:""
                     )}
                 <div className='card-create'>
                     <input type="text" onChange={e => updateCardTask(e.target.value)}/>
